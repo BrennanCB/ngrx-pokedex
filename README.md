@@ -1,6 +1,6 @@
 # NgrxPokedex
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
+Project is based on the following tutorial:
+https://carloscaballero.io/build-your-pokedex-part1-introduction-ngrx/
 
 ## Development server
 
