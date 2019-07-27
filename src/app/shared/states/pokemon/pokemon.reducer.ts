@@ -1,11 +1,8 @@
 import { PokemonActions, PokemonActionTypes } from '@state/pokemon/pokemon.action';
-import { IPokemonState } from '@state/pokemon/pokemon.state';
+import { IPokemonState, pokemonAdapter } from '@state/pokemon/pokemon.adapter';
 
 export function pokemonInitialState(): IPokemonState {
-  return {
-    ids: [],
-    entities: {}
-  };
+  return pokemonAdapter.getInitialState();
 }
 
 function arrayToObject(array) {
@@ -21,36 +18,21 @@ export function pokemonReducer(
 ): IPokemonState {
   switch (action.type) {
     case PokemonActionTypes.LOAD_POKEMONS_SUCCESS:
-      return {
-        ...state,
-        entities: arrayToObject(action.payload)
-      };
+      return pokemonAdapter.addAll(action.payload, state);
 
     case PokemonActionTypes.ADD_SUCCESS:
-      return {
-        ...state,
-        entities: {
-          ...state.entities,
-          [action.pokemon.id]: action.pokemon
-        }
-      };
+      return pokemonAdapter.addOne(action.pokemon, state);
 
     case PokemonActionTypes.DELETE_SUCCESS:
-      const entities = {...state.entities};
-      delete entities[action.id];
-      return {
-        ...state,
-        entities
-      };
+      return pokemonAdapter.removeOne(action.pokemon, state);
 
     case PokemonActionTypes.UPDATE_SUCCESS:
-      return {
-        ...state,
-        entities: {
-          ...state.entities,
-          [action.pokemon.id]: action.pokemon
-        }
-      };
+      const {id} = action.pokemon;
+
+      return pokemonAdapter.updateOne({
+        id,
+        changes: action.pokemon
+      }, state);
 
     default:
       return state;
