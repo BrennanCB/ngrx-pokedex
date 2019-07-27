@@ -17,7 +17,27 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@shared/*": [
+        "src/app/shared/*"
+      ],
+      "@services/*": [
+        "src/app/shared/services/*"
+      ],
+      "@state/*": [
+        "src/app/shared/states/*"
+      ],
+      "@views/*": [
+        "src/app/views/*"
+      ],
+      "@abstractions/*": [
+        "src/app/shared/abstractions/*"
+      ],
+      "@environments/*": [
+        "src/environments/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

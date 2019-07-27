@@ -1,0 +1,71 @@
+<mat-card class="container">
+  <form [formGroup]="pokemonForm">
+    <div class="form-element" fxLayout
+         fxLayout.xs="column"
+         fxLayoutAlign="center"
+         fxLayoutGap="10px">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input class="form-control"
+               formControlName="name"
+               matInput
+               placeholder="Name"
+               required
+               type="text"/>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Height</mat-label>
+        <input class="form-control"
+               formControlName="height"
+               matInput
+               placeholder="0.5"
+               required
+               type="text"/>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Weight</mat-label>
+        <input class="form-control"
+               formControlName="weight"
+               matInput
+               placeholder="9.5"
+               required
+               type="text"/>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input class="form-control"
+               formControlName="description"
+               matInput
+               placeholder="Description"
+               required
+               type="text"/>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Photo</mat-label>
+        <mat-select class="form-control" formControlName="photo" required>
+          <mat-option *ngFor="let photo of photos" [value]="photo.id">
+            {{ photo.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="example-button-row">
+      <button (click)="addPokemon()"
+              [disabled]="!pokemonForm.valid"
+              color="primary"
+              mat-raised-button
+              type="button">
+        Add pokemon!
+      </button>
+      <button (click)="updatePokemon()"
+              [disabled]="!pokemonForm.valid"
+              color="accent"
+              mat-raised-button
+              type="button">
+        Update pokemon!
+      </button>
+    </div>
+  </form>
+</mat-card>
